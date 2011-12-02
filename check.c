@@ -29,7 +29,7 @@ E_pion checkLines(E_pion** uneGrille)
     i++;
   }
   if(won)
-    return refPion;
+    return PDP ;
   else
     return PDP;
 }
@@ -63,7 +63,7 @@ E_pion checkCols(E_pion** uneGrille)
     j++;
   }
   if(won)
-    return refPion;
+    return PDP ;
   else
     return PDP;
 }
@@ -99,7 +99,7 @@ E_pion baseLigneAsc(E_pion** uneGrille)
     i++;
   }
   if(won)
-    return refPion;
+    return PDP ;
   else
     return PDP;
 }
@@ -133,10 +133,10 @@ E_pion baseColAsc(E_pion** uneGrille)
       jDiag++;
     }
     j--;
-    }
+  }
   
   if(won)
-    return refPion;
+    return PDP ;
   else
     return PDP;
 }
@@ -166,6 +166,7 @@ E_pion baseLigneDesc(E_pion** uneGrille)
       }
       if(cmpt == 4 && uneGrille[i][jDiag] != PDP)
 	won = TRUE;
+      uneGrille[i][jDiag] = N;
       i--;
       jDiag--;
     }
@@ -173,7 +174,7 @@ E_pion baseLigneDesc(E_pion** uneGrille)
   }
   
   if(won)
-    return refPion;
+    return PDP ;
   else
     return PDP;
 }
@@ -210,7 +211,7 @@ E_pion baseColDesc(E_pion** uneGrille)
   }
   
   if(won)
-    return refPion;
+    return PDP ;
   else
     return PDP;
 }
