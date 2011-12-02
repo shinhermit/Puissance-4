@@ -98,7 +98,6 @@ E_pion baseLigneAsc(E_pion** uneGrille)
     }
     i++;
   }
-  printf("end baseLigneAsc");
   if(won)
     return refPion;
   else
@@ -110,7 +109,7 @@ E_pion baseColAsc(E_pion** uneGrille)
   short i,j,jDiag,cmpt;
   E_boolean won;
   E_pion refPion;
-
+  
   won = FALSE;
   j=4-1; //4-1: indice débutant à 0
   while(j>0 && !won)
@@ -134,7 +133,8 @@ E_pion baseColAsc(E_pion** uneGrille)
       jDiag++;
     }
     j--;
-  }
+    }
+  
   if(won)
     return refPion;
   else
@@ -151,7 +151,7 @@ E_pion baseLigneDesc(E_pion** uneGrille)
   j=4-1;
   while(j<7-1 && !won)
   {
-    refPion = uneGrille[6-1][jDiag];
+    refPion = uneGrille[6-1][j];
     cmpt = 0;
     i=6-1;
     jDiag=j;
@@ -171,6 +171,7 @@ E_pion baseLigneDesc(E_pion** uneGrille)
     }
     j++;
   }
+  
   if(won)
     return refPion;
   else
@@ -187,10 +188,10 @@ E_pion baseColDesc(E_pion** uneGrille)
   i=4-1; //4-1: indice débutant à 0
   while(i<6 && !won)
   {
-    refPion = uneGrille[iDiag][7-1];
+    refPion = uneGrille[i][7-1];
     cmpt = 0;
-    iDiag=i;
     j=7-1;
+    iDiag=i;
     while(iDiag >= 0 && j<=(j-i+1) && !won)
     {
       if(uneGrille[iDiag][j] == refPion)
@@ -207,6 +208,7 @@ E_pion baseColDesc(E_pion** uneGrille)
     }
     i++;
   }
+  
   if(won)
     return refPion;
   else
