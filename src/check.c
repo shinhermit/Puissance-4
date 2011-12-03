@@ -1,97 +1,101 @@
-#include "puissance4.h"
+/*
+ *Power4 V3
+ *check.c v6
+ */
+#include "power4.h"
 
-E_pion checkLines(E_pion** uneGrille)
+E_pawn checkLines(E_pawn** aGrid)
 {
   E_boolean won;
-  short i,j,cmpt;
-  E_pion refPion;
+  short i,j,count;
+  E_pawn refPawn;
 
   won = FALSE;
   i=0;
   while(i<6 && !won)
   {
-    cmpt=0;
-    refPion = uneGrille[i][0];
+    count=0;
+    refPawn = aGrid[i][0];
     j=0;
     while(j<7 && !won)
     {
-      if(uneGrille[i][j] == refPion)
-	++cmpt;
+      if(aGrid[i][j] == refPawn)
+	++count;
       else
       {
-	refPion = uneGrille[i][j];
-	cmpt = 1;
+	refPawn = aGrid[i][j];
+	count = 1;
       }
-      if(cmpt == 4 && uneGrille[i][j] != PDP)
+      if(count == 4 && aGrid[i][j] != NP)
 	won = TRUE;
       j++;
     }
     i++;
   }
   if(won)
-    return refPion;
+    return refPawn;
   else
-    return PDP;
+    return NP;
 }
 
-E_pion checkCols(E_pion** uneGrille)
+E_pawn checkCols(E_pawn** aGrid)
 {
   E_boolean won;
-  short i,j,cmpt;
-  E_pion refPion;
+  short i,j,count;
+  E_pawn refPawn;
 
   won = FALSE;
   j=0;
   while(j<7 && !won)
   {
-    cmpt=0;
-    refPion = uneGrille[0][j];
+    count=0;
+    refPawn = aGrid[0][j];
     i=0;
     while(i<6 && !won)
     {
-      if(uneGrille[i][j] == refPion)
-	++cmpt;
+      if(aGrid[i][j] == refPawn)
+	++count;
       else
       {
-	refPion = uneGrille[i][j];
-	cmpt = 1;
+	refPawn = aGrid[i][j];
+	count = 1;
       }
-      if(cmpt == 4 && uneGrille[i][j] != PDP)
+      if(count == 4 && aGrid[i][j] != NP)
 	won = TRUE;
       i++;
     }
     j++;
   }
   if(won)
-    return refPion;
+    return refPawn;
   else
-    return PDP;
+    return NP;
 }
 
-E_pion baseLigneAsc(E_pion** uneGrille)
+E_pawn baseLineAsc(E_pawn** aGrid)
 {
-  short i,iDiag,j,cmpt;
+  short i,iDiag,j,count;
   E_boolean won;
-  E_pion refPion;
+  E_pawn refPawn;
 
   won = FALSE;
   i=4-1; //4-1: indice débutant à 0
   while(i<6 && !won)
   {
-    refPion = uneGrille[i][0];
-    cmpt = 0;
+    refPawn = aGrid[i][0];
+    count = 0;
     iDiag=i;
     j=0;
     while(iDiag >= 0 && j<=i && !won)
     {
-      if(uneGrille[iDiag][j] == refPion)
-	++cmpt;
+      if(aGrid[iDiag][j] == refPawn)
+	++count;
       else
       {
-	refPion = uneGrille[iDiag][j];
-	cmpt = 1;
+	refPawn = aGrid[iDiag][j];
+	count = 1;
       }
-      if(cmpt == 4 && uneGrille[iDiag][j] != PDP)
+      if(count == 4 && aGrid[iDiag][j] != NP)
 	won = TRUE;
       iDiag--;
       j++;
@@ -99,35 +103,35 @@ E_pion baseLigneAsc(E_pion** uneGrille)
     i++;
   }
   if(won)
-    return refPion;
+    return refPawn;
   else
-    return PDP;
+    return NP;
 }
 
-E_pion baseColAsc(E_pion** uneGrille)
+E_pawn baseColAsc(E_pawn** aGrid)
 {
-  short i,j,jDiag,cmpt;
+  short i,j,jDiag,count;
   E_boolean won;
-  E_pion refPion;
+  E_pawn refPawn;
   
   won = FALSE;
   j=4-1; //4-1: indice débutant à 0
   while(j>0 && !won)
   {
-    refPion = uneGrille[6-1][j];
-    cmpt = 0;
+    refPawn = aGrid[6-1][j];
+    count = 0;
     i=6-1;
     jDiag=j;
     while(jDiag<7 && i>=j-1 && !won)
     {
-      if(uneGrille[i][jDiag] == refPion)
-	++cmpt;
+      if(aGrid[i][jDiag] == refPawn)
+	++count;
       else
       {
-	refPion = uneGrille[i][jDiag];
-	cmpt = 1;
+	refPawn = aGrid[i][jDiag];
+	count = 1;
       }
-      if(cmpt == 4 && uneGrille[i][jDiag] != PDP)
+      if(count == 4 && aGrid[i][jDiag] != NP)
 	won = TRUE;
       i--;
       jDiag++;
@@ -136,35 +140,35 @@ E_pion baseColAsc(E_pion** uneGrille)
   }
   
   if(won)
-    return refPion;
+    return refPawn;
   else
-    return PDP;
+    return NP;
 }
 
-E_pion baseLigneDesc(E_pion** uneGrille)
+E_pawn baseLineDesc(E_pawn** aGrid)
 {
-  short i,j,jDiag,cmpt;
+  short i,j,jDiag,count;
   E_boolean won;
-  E_pion refPion;
+  E_pawn refPawn;
 
   won = FALSE;
   j=4-1;
   while(j<7-1 && !won)
   {
-    refPion = uneGrille[6-1][j];
-    cmpt = 0;
+    refPawn = aGrid[6-1][j];
+    count = 0;
     i=6-1;
     jDiag=j;
     while(jDiag >= 0 && i >= i-j+1 && !won)
     {
-      if(uneGrille[i][jDiag] == refPion)
-	++cmpt;
+      if(aGrid[i][jDiag] == refPawn)
+	++count;
       else
       {
-	refPion = uneGrille[i][jDiag];
-	cmpt = 1;
+	refPawn = aGrid[i][jDiag];
+	count = 1;
       }
-      if(cmpt == 4 && uneGrille[i][jDiag] != PDP)
+      if(count == 4 && aGrid[i][jDiag] != NP)
 	won = TRUE;
       i--;
       jDiag--;
@@ -173,35 +177,35 @@ E_pion baseLigneDesc(E_pion** uneGrille)
   }
   
   if(won)
-    return refPion;
+    return refPawn;
   else
-    return PDP;
+    return NP;
 }
 
-E_pion baseColDesc(E_pion** uneGrille)
+E_pawn baseColDesc(E_pawn** aGrid)
 {
-  short i,iDiag,j,cmpt;
+  short i,iDiag,j,count;
   E_boolean won;
-  E_pion refPion;
+  E_pawn refPawn;
 
   won = FALSE;
   i=4-1; //4-1: indice débutant à 0
   while(i<6 && !won)
   {
-    refPion = uneGrille[i][7-1];
-    cmpt = 0;
+    refPawn = aGrid[i][7-1];
+    count = 0;
     j=7-1;
     iDiag=i;
     while(iDiag >= 0 && j >= j-i+1 && !won)
     {
-      if(uneGrille[iDiag][j] == refPion)
-	++cmpt;
+      if(aGrid[iDiag][j] == refPawn)
+	++count;
       else
       {
-	refPion = uneGrille[iDiag][j];
-	cmpt = 1;
+	refPawn = aGrid[iDiag][j];
+	count = 1;
       }
-      if(cmpt == 4 && uneGrille[iDiag][j] != PDP)
+      if(count == 4 && aGrid[iDiag][j] != NP)
 	won = TRUE;
       j--;
       iDiag--;
@@ -210,45 +214,45 @@ E_pion baseColDesc(E_pion** uneGrille)
   }
   
   if(won)
-    return refPion;
+    return refPawn;
   else
-    return PDP;
+    return NP;
 }
 
-E_pion checkAscDiags(E_pion** uneGrille)
+E_pawn checkAscDiags(E_pawn** aGrid)
 {
-  E_pion pion;
+  E_pawn pawn;
 
-  pion = baseLigneAsc(uneGrille);
-  if(pion != PDP)
-    return pion;
-  pion = baseColAsc(uneGrille);
-  return pion;
+  pawn = baseLineAsc(aGrid);
+  if(pawn != NP)
+    return pawn;
+  pawn = baseColAsc(aGrid);
+  return pawn;
 }
 
-E_pion checkDescDiags(E_pion** uneGrille)
+E_pawn checkDescDiags(E_pawn** aGrid)
 {
-  E_pion pion;
+  E_pawn pawn;
 
-  pion = baseLigneDesc(uneGrille);
-  if(pion != PDP)
-    return pion;
-  pion = baseColDesc(uneGrille);
-  return pion;
+  pawn = baseLineDesc(aGrid);
+  if(pawn != NP)
+    return pawn;
+  pawn = baseColDesc(aGrid);
+  return pawn;
 }
 
-E_pion checkGrid(E_pion** uneGrille)
+E_pawn checkGrid(E_pawn** aGrid)
 {
-  E_pion pion;
+  E_pawn pawn;
 
-  pion = checkLines(uneGrille);
-  if(pion != PDP)
-    return pion;
-  pion = checkCols(uneGrille);
-  if(pion != PDP)
-    return pion;
-  pion = checkAscDiags(uneGrille);
-  if(pion != PDP)
-    return pion;
-  return checkDescDiags(uneGrille);
+  pawn = checkLines(aGrid);
+  if(pawn != NP)
+    return pawn;
+  pawn = checkCols(aGrid);
+  if(pawn != NP)
+    return pawn;
+  pawn = checkAscDiags(aGrid);
+  if(pawn != NP)
+    return pawn;
+  return checkDescDiags(aGrid);
 }

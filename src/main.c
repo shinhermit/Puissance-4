@@ -1,15 +1,19 @@
-#include "puissance4.h"
+/*
+ *Power4 v3
+ *main.c v2
+ */
+#include "power4.h"
 
 void usage(char* progName)
 {
-  printf("Usage:\n %s -j1 nom -p pion -j2 nom\n", progName);
-  printf("Pour afficher cette aide:\n %s -h\n", progName);
+  printf("Usage:\n %s -j1 name -p pion -j2 name\n", progName);
+  printf("Show this help:\n %s -h\n", progName);
 }
 
 int main(int argc, char** argv)
 {
-  S_partie* laPartie = (S_partie*)malloc( sizeof(S_partie) );
-  E_pion pion;
+  S_game* theGame = (S_game*)malloc( sizeof(S_game) );
+  E_pawn pawn;
   E_boolean won, full, stoppedByUser;
   short fullColCount;
   E_playStatus status;
@@ -17,23 +21,23 @@ int main(int argc, char** argv)
   if(argc < 5)
   {
     usage(argv[0]);
-    newGame(laPartie, "Joueur1", X, "Joueur2", O);
+    newGame(theGame, "Player1", X, "Player2", O);
   }
   else
   {
-    if(argv[4] == "X") pion = X;
-    else pion = O;
-    newGame(laPartie, argv[2], pion, argv[6], PDP);
+    if(argv[4] == "X") pawn = X;
+    else pawn = O;
+    newGame(theGame, argv[2], pawn, argv[6], NP);
   }
-  gameStats(laPartie);
+  gameStats(theGame);
   fullColCount = 0;
   full = FALSE;
   won = FALSE;
   stoppedByUser = FALSE;
   while(!full && !won && !stoppedByUser)
   {
-    status = playOneTurn(laPartie, laPartie->aQuiLeTour);
-    refreshScreen(laPartie);
+    status = playOneTurn(theGame, theGame->whoMustPlay);
+    refreshScreen(theGame);
     if(status == PLAYED_FULLED)
       fullColCount++;
     else
@@ -44,16 +48,16 @@ int main(int argc, char** argv)
 	  stoppedByUser = TRUE;
     if(fullColCount == 7)
       full = TRUE;
-    pion = checkGrid(laPartie->grille);
-    if(pion != PDP)
+    pawn = checkGrid(theGame->grid);
+    if(pawn != NP)
       won = TRUE;
   }
-  printf("FIN DE PARTIE !\n");
+  printf("END OF THE GAME !\n");
   if(won)
-    displayWinner(laPartie);
+    displayWinner(theGame);
   else
     if(!stoppedByUser)
-      printf("Match nul.\n");
-  destroyGame(laPartie);
+      printf("Draw.\n");
+  destroyGame(theGame);
   return 0;
 }

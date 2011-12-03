@@ -1,73 +1,77 @@
+/*
+ *Power4 v3
+ *game.c v2
+ */
 #include <string.h>
-#include "puissance4.h"
+#include "power4.h"
 
-void initGrille(S_partie* unePartie)
+void initGrid(S_game* aGame)
 {
-  E_pion **grille = (E_pion**)malloc( 6*7*sizeof(E_pion) );
+  E_pawn **grid = (E_pawn**)malloc( 6*7*sizeof(E_pawn) );
   int i,j;
   for(i=0; i<6; ++i)
   {
-    grille[i] = (E_pion*)malloc( 7*sizeof(E_pion) );
+    grid[i] = (E_pawn*)malloc( 7*sizeof(E_pawn) );
     for(j=0; j<7; ++j)
-      grille[i][j] = PDP;
+      grid[i][j] = NP;
   }
-  unePartie->grille = grille;
+  aGame->grid = grid;
 }
 
-short addPlayer(S_partie* unePartie, char* nomJoueur, E_pion typePion)
+short addPlayer(S_game* aGame, char* playerName, E_pawn pawnType)
 {
-  S_joueur* joueur = (S_joueur*)malloc( sizeof(S_joueur) );
+  S_player* player = (S_player*)malloc( sizeof(S_player) );
 
-  if(0 <= unePartie->nbPlayers && unePartie->nbPlayers < 2)
+  if(0 <= aGame->nbPlayers && aGame->nbPlayers < 2)
   {
-    joueur->num = unePartie->nbPlayers + 1;
-    if(nomJoueur)
-      strcpy(joueur->name, nomJoueur);
-    if(unePartie->nbPlayers == 0)
+    player->num = aGame->nbPlayers + 1;
+    if(playerName)
+      strcpy(player->name, playerName);
+    if(aGame->nbPlayers == 0)
     {
-      if(!nomJoueur)
-	strcpy(joueur->name, "Joueur1");
-      if(typePion != PDP)
-	joueur->typePion = typePion;
+      if(!playerName)
+	strcpy(player->name, "Player1");
+      if(pawnType != NP)
+	player->pawnType = pawnType;
       else
-	joueur->typePion = X;
+	player->pawnType = X;
     }
     else
     {
-      if(!nomJoueur)
-	strcpy(joueur->name, "Joueur2");
-      joueur->typePion = (unePartie->players[unePartie->nbPlayers-1]->typePion == X) ? O : X;
+      if(!playerName)
+	strcpy(player->name, "Player2");
+      player->pawnType = (aGame->players[aGame->nbPlayers-1]->pawnType == X) ? O : X;
     }
-    unePartie->players[unePartie->nbPlayers] = joueur;
-    unePartie->nbPlayers ++;
-    return unePartie->nbPlayers;
+    aGame->players[aGame->nbPlayers] = player;
+    aGame->nbPlayers ++;
+    return aGame->nbPlayers;
   }
   else
   {
-    printf("Maximum: 2 joueurs\n");
+    printf("Maximum: 2 player\n");
     return 0;
   }
 }
 
-void destroyPlayers(S_partie* unePartie)
+void destroyPlayers(S_game* aGame)
 {
   int i;
-  for(i=0; i<unePartie->nbPlayers; ++i)
-    free(unePartie->players[i]);
+  for(i=0; i<aGame->nbPlayers; ++i)
+    free(aGame->players[i]);
 }
 
-void newGame(S_partie* unePartie, char* nomJoueur1, E_pion typePion1, char* nomJoueur2, E_pion typePion2)
+void newGame(S_game* aGame, char* playerName1, E_pawn pawnType1, char* playerName2, E_pawn pawnType2)
 {
-  initGrille(unePartie);
-  unePartie->nbPlayers = 0;
-  unePartie->aQuiLeTour = J1;
-  addPlayer(unePartie, nomJoueur1, typePion1);
-  addPlayer(unePartie, nomJoueur2, typePion2);
+  initGrid(aGame);
+  aGame->nbPlayers = 0;
+  aGame->whoMustPlay = P1;
+  addPlayer(aGame, playerName1, pawnType1);
+  addPlayer(aGame, playerName2, pawnType2);
 }
 
-void destroyGame(S_partie* unePartie)
+void destroyGame(S_game* aGame)
 {
-  destroyPlayers(unePartie);
-  free(unePartie->grille);
-  free(unePartie);
+  destroyPlayers(aGame);
+  free(aGame->grid);
+  free(aGame);
 }

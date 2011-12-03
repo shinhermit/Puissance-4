@@ -1,8 +1,12 @@
-#include "puissance4.h"
+/*
+ *Power4 v3
+ *display.c v2
+ */
+#include "power4.h"
 
-char convPion(E_pion pion)
+char convPawn(E_pawn pawn)
 {
-  switch(pion)
+  switch(pawn)
   {
   case X:
     return 'X';
@@ -10,22 +14,22 @@ char convPion(E_pion pion)
   case O:
     return 'O';
     break;
-  case N:
+  case N: // Neutral, for tests only
     return '*';
     break;
-  case PDP:
+  case NP: //No Pawn
     return ' ';
   }
 }
 
-void printLine(E_pion* vect, int nbElts)
+void printLine(E_pawn* vect, int nbElts)
 {
 	int i;
 	
 	printf("|");
 	for(i=0; i<nbElts; i++)
 	{
-	  printf( "%c|", convPion(vect[i]) );
+	  printf( "%c|", convPawn(vect[i]) );
 	}
 	printf("\n");	
 }
@@ -47,12 +51,12 @@ void numberize(int lnLen)
   printf("\n");
 }
 
-void printGrille(E_pion** mat, int nLgn, int nCol)
+void printGrid(E_pawn** mat, int nLn, int nCol)
 {
   int i;
   numberize(nCol);
   hline(2*nCol+1);
-  for(i=0; i<nLgn; ++i)
+  for(i=0; i<nLn; ++i)
   {
     printLine(mat[i], nCol);
     hline(2*nCol+1);
@@ -60,25 +64,25 @@ void printGrille(E_pion** mat, int nLgn, int nCol)
   printf("\n");
 }
 
-void gameStats(S_partie* unePartie)
+void gameStats(S_game* aGame)
 {
-  printf( "%s(pion %c) vs %s(pion %c)\n\n", unePartie->players[0]->name, convPion(unePartie->players[0]->typePion), unePartie->players[1]->name, convPion(unePartie->players[1]->typePion) );
-  printGrille( (E_pion**)unePartie->grille, 6, 7 );
+  printf( "%s(pawn %c) vs %s(pawn %c)\n\n", aGame->players[0]->name, convPawn(aGame->players[0]->pawnType), aGame->players[1]->name, convPawn(aGame->players[1]->pawnType) );
+  printGrid( (E_pawn**)aGame->grid, 6, 7 );
 }
 
-void refreshScreen(S_partie* unePartie)
+void refreshScreen(S_game* aGame)
 {
   //system("clear");
-  gameStats(unePartie);
+  gameStats(aGame);
 }
 
-void displayWinner(S_partie* unePartie)
+void displayWinner(S_game* aGame)
 {
   E_playerNum playerNum;
 
-  if(unePartie->aQuiLeTour == J1)
-    playerNum = J2;
+  if(aGame->whoMustPlay == P1)
+    playerNum = P2;
   else
-    playerNum = J1;
-  printf("%s est le vainqueur!\n", unePartie->players[playerNum]->name);
+    playerNum = P1;
+  printf("%s Is the winner!\n", aGame->players[playerNum]->name);
 }

@@ -1,47 +1,51 @@
-#include "puissance4.h"
+/*
+ *Power4 v3
+ *play.c v2
+ */
+#include "power4.h"
 
-short askPlayer(S_joueur* joueur)
+short askPlayer(S_player* player)
 {
   short col;
   char quit;
 
-  printf("%s doit poser un pion\n", joueur->name);
+  printf("%s must play\n", player->name);
   do
   {
-    printf("Quitter: 0\n");
-    printf("Colonne(1-7) ?  ");
+    printf("Quit: 0\n");
+    printf("Colomn(1-7) ?  ");
     scanf("%hd%*c", &col);
   }while(col<0 || col > 7);
   return col-1;
 }
 
-E_playStatus playOneTurn(S_partie* unePartie, E_playerNum playerNum)
+E_playStatus playOneTurn(S_game* aGame, E_playerNum playerNum)
 {
   short i, col;
-  E_boolean caseVide;
+  E_boolean blankSet;
 
-  col = askPlayer(unePartie->players[playerNum]);
+  col = askPlayer(aGame->players[playerNum]);
   if(col == -1)
     return QUIT_GAME;
-  caseVide = TRUE;
+  blankSet = TRUE;
   i=0;
-  while(i<6 && caseVide)
+  while(i<6 && blankSet)
   {
-    if(unePartie->grille[i][col] == PDP)
+    if(aGame->grid[i][col] == NP)
        ++i;
     else
-      caseVide = FALSE;
+      blankSet = FALSE;
   }
   if(i == 0)
     return FULL_NOT_PLAYED;
   if(i > 0)
   {
-    unePartie->grille[i-1][col] = unePartie->players[playerNum]->typePion;
+    aGame->grid[i-1][col] = aGame->players[playerNum]->pawnType;
 
-    if(playerNum == J1)
-      unePartie->aQuiLeTour = J2;
+    if(playerNum == P1)
+      aGame->whoMustPlay = P2;
     else
-      unePartie->aQuiLeTour = J1;
+      aGame->whoMustPlay = P1;
     
     if(i == 1)
       return PLAYED_FULLED;
