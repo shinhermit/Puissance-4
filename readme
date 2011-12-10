@@ -9,10 +9,12 @@ How to compile
 
 -Open a shell (Terminal)
 -move to the root folder of the download
-      *if you run
-      	  :~ ls , it should prompt 2 folders, 'src' and 'include'
+       *if you run
+      	  $ ls
+	it should prompt 3 folders, 'build', 'src' and 'include'
+
 -run the following commands:
-     make all
-     make clean
+     $ make
+
 -enjoy by running:
-     ./power4
+     $ ./power4

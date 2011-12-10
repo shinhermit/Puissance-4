@@ -1,8 +1,5 @@
-/*
- *Power4 v3
- *display.c v2
- */
 #include "power4.h"
+#include "display.h"
 
 char convPawn(E_pawn pawn)
 {
@@ -14,10 +11,10 @@ char convPawn(E_pawn pawn)
   case O:
     return 'O';
     break;
-  case N: // Neutral, for tests only
+  case N:
     return '*';
     break;
-  case NP: //No Pawn
+  case NP:
     return ' ';
   }
 }
@@ -42,7 +39,7 @@ void hline(int lnLen)
   printf("\n");
 }
 
-void numberize(int lnLen)
+void displayColsNum(int lnLen)
 {
   int i;
   printf(" ");
@@ -54,7 +51,7 @@ void numberize(int lnLen)
 void printGrid(E_pawn** mat, int nLn, int nCol)
 {
   int i;
-  numberize(nCol);
+  displayColsNum(nCol);
   hline(2*nCol+1);
   for(i=0; i<nLn; ++i)
   {
@@ -72,7 +69,7 @@ void gameStats(S_game* aGame)
 
 void refreshScreen(S_game* aGame)
 {
-  //system("clear");
+  system("clear");
   gameStats(aGame);
 }
 

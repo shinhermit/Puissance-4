@@ -1,8 +1,7 @@
-/*
- *Power4 v3
- *play.c v2
- */
 #include "power4.h"
+#include "display.h"
+#include "game.h"
+#include "play.h"
 
 short askPlayer(S_player* player)
 {
@@ -22,19 +21,19 @@ short askPlayer(S_player* player)
 E_playStatus playOneTurn(S_game* aGame, E_playerNum playerNum)
 {
   short i, col;
-  E_boolean blankSet;
+  E_boolean emptyCell;
 
   col = askPlayer(aGame->players[playerNum]);
   if(col == -1)
     return QUIT_GAME;
-  blankSet = TRUE;
+  emptyCell = TRUE;
   i=0;
-  while(i<6 && blankSet)
+  while(i<6 && emptyCell)
   {
     if(aGame->grid[i][col] == NP)
        ++i;
     else
-      blankSet = FALSE;
+      emptyCell = FALSE;
   }
   if(i == 0)
     return FULL_NOT_PLAYED;

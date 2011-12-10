@@ -1,9 +1,16 @@
 #include "power4.h"
+#include "power4.h"
 #include "display.h"
 #include "game.h"
 #include "play.h"
 #include "check.h"
 #include "cmndLine.h"
+
+void usage(char* progName)
+{
+  printf("Usage:\n %s -j1 name -p pion -j2 name\n", progName);
+  printf("Show this help:\n %s -h\n", progName);
+}
 
 int main(int argc, char** argv)
 {
@@ -37,7 +44,7 @@ int main(int argc, char** argv)
       fullColCount++;
     else
       if(status == FULL_NOT_PLAYED)
-	printf("The column is full, please play again\n");
+	printf("Colonne pleine, rejouer\n");
       else
 	if(status == QUIT_GAME)
 	  stoppedByUser = TRUE;

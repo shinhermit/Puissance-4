@@ -1,8 +1,8 @@
-/*
- *Power4 V3
- *check.c v6
- */
 #include "power4.h"
+#include "display.h"
+#include "game.h"
+#include "play.h"
+#include "check.h"
 
 E_pawn checkLines(E_pawn** aGrid)
 {

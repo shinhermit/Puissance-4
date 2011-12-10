@@ -1,9 +1,6 @@
-/*
- *Power4 v3
- *game.c v2
- */
-#include <string.h>
 #include "power4.h"
+#include "display.h"
+#include "game.h"
 
 void initGrid(S_game* aGame)
 {
