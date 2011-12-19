@@ -1,0 +1,10 @@
+#include "power4.h"
+#include <stdio.h>
+
+int main()
+{
+  FILE* test_file;
+  test_file = fopen(LOGPATH, "a");
+  fclose(test_file);
+  return 0;
+}
