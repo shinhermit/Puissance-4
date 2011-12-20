@@ -14,7 +14,7 @@ You can find informations about the rules of the game at the following:\n
 
 you can copy/paste the following command or follow the steps below:
 
-	cd build; cmake .. -G "Unix Makefiles"; cd ..; make; make clean
+	cd build; cmake .. -G "Unix Makefiles"; cd ..; make
 	
 ###Step by step
 
@@ -41,7 +41,6 @@ it should display 4 folders, 'build', gamefiles, 'include' and 'src'
 * run the following commands:
 
 	make
-	make clean
 
 ##Run the program:
 
