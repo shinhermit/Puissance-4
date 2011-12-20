@@ -22,17 +22,17 @@ you can copy/paste the following command or follow the steps below:
 
 * if you run
 
-	$ ls
+	ls
 
 it should display 4 folders, 'build', gamefiles, 'include' and 'src'
 
 * move into "build"
 
-	$ cd build
+	cd build
 
 * and run cmake:
 
-	$ cmake .. -G "Unix Makefiles"
+	cmake .. -G "Unix Makefiles"
 
 * go back to the main folder:
 
@@ -40,12 +40,12 @@ it should display 4 folders, 'build', gamefiles, 'include' and 'src'
 
 * run the following commands:
 
-	$ make
-	$ make clean
+	make
+	make clean
 
 ##Run the program:
 
-	$ ./power4
+	./power4
 
 #list of options
 
