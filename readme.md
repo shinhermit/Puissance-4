@@ -61,6 +61,7 @@ it should display 4 folders, 'build', gamefiles, 'include' and 'src'
 #Description
 
 directories:
+
 * src: contains .c source files
 * include: contains .h headers
 * gamefiles: contains logfile power4.log
