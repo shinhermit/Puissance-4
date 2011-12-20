@@ -3,23 +3,23 @@ author: Josuah Aron
 version 1.5
 
 ##Rules
-You can find informations about the rules of the game at the following:
-http://fr.wikipedia.org/wiki/Puissance_4
+You can find informations about the rules of the game at the following:\n
+	http://fr.wikipedia.org/wiki/Puissance_4
 
 ##How to compile
 
-*Open a shell (Terminal)
-*move to the root folder of the download
-       **if you run
-      	  $ ls
+* Open a shell (Terminal)
+* move to the root folder of the download
+** if you run
+	$ ls
 	it should display 4 folders, 'build', gamefiles, 'include' and 'src'
 
-*run the following commands:
-     $ make
-     $ make clean
+* run the following commands:
+	$ make
+	$ make clean
 
-*enjoy by running:
-     $ ./power4
+* enjoy by running:
+	$ ./power4
 
 #list of options
 
@@ -36,7 +36,7 @@ http://fr.wikipedia.org/wiki/Puissance_4
 #Description
 
 directories:
-*	src: contains .c source files
-*	include: contains .h headers
-*	gamefiles: contains logfile power4.log
-*	build: contains Makefile and cmake files
+* src: contains .c source files
+* include: contains .h headers
+* gamefiles: contains logfile power4.log
+* build: contains Makefile and cmake files
