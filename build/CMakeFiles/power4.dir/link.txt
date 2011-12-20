@@ -1,0 +1,1 @@
+/usr/bin/gcc      CMakeFiles/power4.dir/src/check.c.o CMakeFiles/power4.dir/src/main.c.o CMakeFiles/power4.dir/src/cmndLine.c.o CMakeFiles/power4.dir/src/game.c.o CMakeFiles/power4.dir/src/play.c.o CMakeFiles/power4.dir/src/display.c.o  -o power4 -rdynamic 
