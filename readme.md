@@ -5,8 +5,9 @@ author: Josuah Aron
 version 1.5
 
 ##Rules
-You can find informations about the rules of the game at the following:\n
-	http://fr.wikipedia.org/wiki/Puissance_4
+You can find informations about the rules of the game at the following:
+
+http://fr.wikipedia.org/wiki/Puissance_4
 
 ##How to compile
 
