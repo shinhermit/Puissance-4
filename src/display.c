@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "power4.h"
 #include "display.h"
 
@@ -28,13 +27,6 @@ void showHelp(char* progName)
   printf("-j2: enter the name of player2 after this marker.\n");
   printf("-p: enter the type of pawn for player 1.\n\t X or O\n");
 }
-=======
-/*
- *Power4 v3
- *display.c v2
- */
-#include "power4.h"
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
 
 char convPawn(E_pawn pawn)
 {
@@ -46,17 +38,10 @@ char convPawn(E_pawn pawn)
   case O:
     return 'O';
     break;
-<<<<<<< HEAD
   case N:
     return '*';
     break;
   case NP:
-=======
-  case N: // Neutral, for tests only
-    return '*';
-    break;
-  case NP: //No Pawn
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
     return ' ';
   }
 }
@@ -81,11 +66,7 @@ void hline(int lnLen)
   printf("\n");
 }
 
-<<<<<<< HEAD
 void displayColsNum(int lnLen)
-=======
-void numberize(int lnLen)
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
 {
   int i;
   printf(" ");
@@ -97,11 +78,7 @@ void numberize(int lnLen)
 void printGrid(E_pawn** mat, int nLn, int nCol)
 {
   int i;
-<<<<<<< HEAD
   displayColsNum(nCol);
-=======
-  numberize(nCol);
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
   hline(2*nCol+1);
   for(i=0; i<nLn; ++i)
   {
@@ -119,19 +96,11 @@ void gameStats(S_game* aGame)
 
 void refreshScreen(S_game* aGame)
 {
-<<<<<<< HEAD
   system("clear");
   gameStats(aGame);
 }
 
 void displayWinner(S_game* aGame, E_boolean logfile, FILE* logpath)
-=======
-  //system("clear");
-  gameStats(aGame);
-}
-
-void displayWinner(S_game* aGame)
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
 {
   E_playerNum playerNum;
 
@@ -139,12 +108,8 @@ void displayWinner(S_game* aGame)
     playerNum = P2;
   else
     playerNum = P1;
-<<<<<<< HEAD
 
   printf("%s Is the winner!\n", aGame->players[playerNum]->name);
   if(logfile)
     log_print(logpath, "%s Is the winner!\n", aGame->players[playerNum]->name, -1);
-=======
-  printf("%s Is the winner!\n", aGame->players[playerNum]->name);
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
 }

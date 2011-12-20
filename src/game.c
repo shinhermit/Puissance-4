@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 #include "power4.h"
 #include "display.h"
 #include "game.h"
 #include <string.h>
-=======
-/*
- *Power4 v3
- *game.c v2
- */
-#include <string.h>
-#include "power4.h"
->>>>>>> b52cfc3b286527643a1a14aff3dcfbe4b260dfac
 
 void initGrid(S_game* aGame)
 {
