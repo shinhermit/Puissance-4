@@ -1,5 +1,7 @@
 #Power4: A small game programming project for studies
+
 author: Josuah Aron
+
 version 1.5
 
 ##Rules
@@ -9,16 +11,40 @@ You can find informations about the rules of the game at the following:\n
 ##How to compile
 
 * Open a shell (Terminal)
-* move to the root folder of the download
-** if you run
+
+you can copy/paste the following command or follow the steps below:
+
+	cd build; cmake .. -G "Unix makefiles"; cd ..; make; make clean
+	
+###Step by step
+
+* move to the root folder
+
+* if you run
+
 	$ ls
-	it should display 4 folders, 'build', gamefiles, 'include' and 'src'
+
+it should display 4 folders, 'build', gamefiles, 'include' and 'src'
+
+* move into "build"
+
+	$ cd build
+
+* and run cmake:
+
+	$ cmake .. -G "Unix Makefiles"
+
+* go back to the main folder:
+
+	cd ..
 
 * run the following commands:
+
 	$ make
 	$ make clean
 
-* enjoy by running:
+##Run the program:
+
 	$ ./power4
 
 #list of options
