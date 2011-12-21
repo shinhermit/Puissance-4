@@ -13,7 +13,7 @@ short askPlayer(S_player* player)
   {
     printf("Quit: 0\n");
     printf("Colomn(1-7) ?  ");
-    scanf("%hd%*c", &col);
+    scanf("%1hd%*c", &col);
   }while(col<0 || col > 7);
   return col-1;
 }
